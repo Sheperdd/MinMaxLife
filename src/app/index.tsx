@@ -9,7 +9,7 @@ export default function StartupMenu() {
     <Container>
       <Text className={styles.title}>Welcome to MinMaxLife!</Text>
       <Text className={styles.subtitle}>Choose an option to get started:</Text>
-      <Link href="/details" asChild>
+      <Link href="/" asChild>
         <Button title="View Details" />
       </Link>
       <Link href="/" asChild>
