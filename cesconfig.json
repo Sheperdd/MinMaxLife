@@ -1,6 +1,6 @@
 {
   "cesVersion": "2.12.1",
-  "projectName": "~/Users/shane/Documents/React Native Projects/MinMaxLife",
+  "projectName": "MinMaxLife",
   "packages": [
     {
       "name": "expo-router",

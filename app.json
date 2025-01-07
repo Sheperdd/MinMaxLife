@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "~/Users/shane/Documents/React Native Projects/MinMaxLife",
-    "slug": "~/Users/shane/Documents/React Native Projects/MinMaxLife",
+    "name": "MinMaxLife",
+    "slug": "MinMaxLife",
     "version": "1.0.0",
 
-    "scheme": "~/Users/shane/Documents/React Native Projects/MinMaxLife",
+    "scheme": "minmaxlife",
     "web": {
       "bundler": "metro",
       "output": "static",
