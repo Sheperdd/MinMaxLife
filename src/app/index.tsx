@@ -1,21 +1,17 @@
-import { Link, Stack } from 'expo-router';
-import { ActivityIndicator, Text, View } from 'react-native';
+import { Link, Redirect, Stack } from 'expo-router';
+import { Text, View } from 'react-native';
 
 import { useAuth } from '@/providers/AuthProvider';
 import { Button } from '~/components/Button';
 import { Container } from '~/components/Container';
 
 export default function StartupMenu() {
-  const { loading } = useAuth();
-
-  if (loading) {
-    return <ActivityIndicator />;
-  }
+  const { session } = useAuth();
 
   // Redirect to home if user is already logged in
-  // if (session) {
-  //   return <Link href="/" />;
-  // }
+  if (session) {
+    return <Redirect href="/(home)" />;
+  }
 
   return (
     <Container>
