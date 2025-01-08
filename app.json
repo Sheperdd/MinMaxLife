@@ -3,6 +3,7 @@
     "name": "MinMaxLife",
     "slug": "MinMaxLife",
     "version": "1.0.0",
+    "newArchEnabled": true,
 
     "scheme": "minmaxlife",
     "web": {
