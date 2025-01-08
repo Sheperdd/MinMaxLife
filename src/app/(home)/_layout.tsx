@@ -1,5 +1,5 @@
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Redirect, Stack } from 'expo-router';
 import React from 'react';
 import { ViewStyle, View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
