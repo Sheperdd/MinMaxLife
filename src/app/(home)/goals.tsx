@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-const HomeScreen = () => {
+const GoalsScreen = () => {
   return (
     <View className="flex flex-1 items-center justify-center">
-      <Text>Home Screen</Text>
+      <Text>Set Goals!</Text>
     </View>
   );
 };
 
-export default HomeScreen;
+export default GoalsScreen;
