@@ -5,7 +5,7 @@ import Animated, { useSharedValue, withSpring, useAnimatedStyle } from 'react-na
 
 import TabBarButton from './TabBarButton';
 
-import { IconType } from '~/constants/icon';
+import { IconType } from '~/types';
 
 //This component is a custom tab bar that animates the tab indicator when switching tabs.
 export default function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
@@ -63,7 +63,7 @@ export default function TabBar({ state, descriptors, navigation }: BottomTabBarP
 
         //when the tab button is pressed, the tab indicator moves to the position of the button
         const onPress = () => {
-          tabPositionX.value = withSpring(buttonWidth * index, { duration: 1000 });
+          tabPositionX.value = withSpring(buttonWidth * index, { duration: 1500 });
           const event = navigation.emit({
             type: 'tabPress',
             target: route.key,
@@ -90,7 +90,7 @@ export default function TabBar({ state, descriptors, navigation }: BottomTabBarP
             routeName={route.name as IconType}
             onPress={onPress}
             onLongPress={onLongPress}
-            color={isFocused ? '#222' : '#222'}
+            color={isFocused ? '#FFF' : '#222'}
             label={label}
           />
         );

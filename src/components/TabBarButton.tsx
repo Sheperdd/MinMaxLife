@@ -7,7 +7,8 @@ import Animated, {
   withSpring,
 } from 'react-native-reanimated';
 
-import { icon, IconType } from '~/constants/icon';
+import { icon } from '~/constants/icon';
+import { IconType } from '~/types';
 
 const TabBarButton = ({
   onPress,
@@ -53,7 +54,7 @@ const TabBarButton = ({
   return (
     <Pressable style={styles.tabItem} onPress={onPress} onLongPress={onLongPress}>
       <Animated.View style={animatedIconStyle}>
-        {icon[routeName]({ color: isFocused ? '#673ab7' : '#222' })}
+        {icon[routeName]({ color: isFocused ? '#FFF' : '#222' })}
       </Animated.View>
       <Animated.Text
         style={[{ color: isFocused ? '#673ab7' : '#222', fontSize: 12 }, animatedTextStyle]}>
