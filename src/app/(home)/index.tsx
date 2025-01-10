@@ -2,21 +2,11 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, ScrollView } from 'react-native';
 import { ProgressBar } from 'react-native-paper';
 
+import { useStatsStore } from '~/store/statsStore';
 import { Stats } from '~/types';
 
-const RPGStatsApp = () => {
-  const [stats, setStats] = useState<Stats>({
-    strength: 40,
-    dexterity: 8,
-    stamina: 9,
-    intelligence: 7,
-    wisdom: 6,
-    creativity: 5,
-    charisma: 4,
-    empathy: 3,
-    courage: 2,
-    dicipline: 1,
-  });
+export default function MainMenu() {
+  const { stats, setStats } = useStatsStore();
 
   const [goal, setGoal] = useState('');
   const [feedback, setFeedback] = useState('');
@@ -37,6 +27,8 @@ const RPGStatsApp = () => {
     setGoal(''); // Clear input
   };
 
+  const MAX_STAT = 100;
+
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.header}>RPG Stats</Text>
@@ -44,7 +36,7 @@ const RPGStatsApp = () => {
         {(Object.keys(stats) as (keyof Stats)[]).map((stat) => (
           <View key={stat} style={styles.stat}>
             <Text style={styles.statName}>{stat.toUpperCase()}</Text>
-            <ProgressBar progress={stats[stat] / 20} style={styles.progressBar} />
+            <ProgressBar progress={stats[stat] / MAX_STAT} style={styles.progressBar} />
             <Text>{stats[stat]}</Text>
           </View>
         ))}
@@ -62,7 +54,7 @@ const RPGStatsApp = () => {
       {feedback ? <Text style={styles.feedback}>{feedback}</Text> : null}
     </ScrollView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -108,5 +100,3 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
-
-export default RPGStatsApp;

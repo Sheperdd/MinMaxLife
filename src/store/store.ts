@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-export interface BearState {
+export interface AuthState {
   user: any;
   setUser: (user: any) => void;
   loading: boolean;
@@ -9,9 +9,11 @@ export interface BearState {
   setEmail: (email: string) => void;
   password: string;
   setPassword: (password: string) => void;
+  userId: string | null;
+  setUserId: (userId: string | null) => void;
 }
 
-export const useStore = create<BearState>((set) => ({
+export const useAuthStore = create<AuthState>((set) => ({
   user: null,
   setUser: (user) => set({ user }),
   loading: false,
@@ -20,4 +22,6 @@ export const useStore = create<BearState>((set) => ({
   setEmail: (email) => set({ email }),
   password: '',
   setPassword: (password) => set({ password }),
+  userId: null,
+  setUserId: (userId) => set({ userId }),
 }));

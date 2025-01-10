@@ -10,5 +10,5 @@ export type Stats = {
   charisma: number;
   empathy: number;
   courage: number;
-  dicipline: number;
+  discipline: number;
 };

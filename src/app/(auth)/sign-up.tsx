@@ -3,21 +3,23 @@ import React from 'react';
 import { View, Text, TextInput, Pressable, Keyboard, Alert } from 'react-native';
 
 import { supabase } from '@/lib/supabase';
-import { useStore } from '@/store/store';
+import { useAuthStore } from '@/store/store';
 import { Button } from '~/components/Button';
 
 export default function SignUp() {
-  const { email, setEmail, password, setPassword, loading, setLoading } = useStore();
+  const { email, setEmail, password, setPassword, loading, setLoading, setUserId } = useAuthStore();
 
   async function signInWithEmail() {
     setLoading(true);
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
     });
 
     if (error) {
       Alert.alert(error.message);
+    } else {
+      setUserId(data?.user?.id || null);
     }
     setLoading(false);
   }
