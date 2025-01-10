@@ -2,7 +2,7 @@ import { supabase } from '~/lib/supabase';
 
 export const fetchStats = async (userId: string): Promise<Record<string, number> | null> => {
   const { data, error } = await supabase
-    .from('stat_progress')
+    .from('stats_progress')
     .select('stat, value')
     .eq('user_id', userId);
 
@@ -31,9 +31,30 @@ export const saveStatUpdate = async (
   stat: string,
   value: number
 ): Promise<void> => {
-  const { error } = await supabase.from('stat_progress').insert([{ user_id: userId, stat, value }]);
+  const { error } = await supabase
+    .from('stats_progress')
+    .insert([{ user_id: userId, stat, value }]);
 
   if (error) {
     console.error(error);
   }
+};
+
+export const fetchStatHistory = async (
+  userId: string,
+  stat: string
+): Promise<{ value: number; timestamp: string }[]> => {
+  const { data, error } = await supabase
+    .from('stats_progress')
+    .select('value, timestamp')
+    .eq('user_id', userId)
+    .eq('stat', stat)
+    .order('timestamp', { ascending: true });
+
+  if (error) {
+    console.error(error);
+    return [];
+  }
+
+  return data;
 };

@@ -8,7 +8,7 @@ import { useAuthStore } from '~/store/store';
 
 const SettingScreen = () => {
   const { session, loading } = useAuth();
-  const { userId } = useAuthStore();
+  const { userId, setUserId } = useAuthStore();
 
   if (loading) {
     return <ActivityIndicator />;
@@ -16,6 +16,10 @@ const SettingScreen = () => {
 
   if (!session) {
     return <Redirect href="/(auth)/sign-in" />;
+  }
+
+  if (!userId) {
+    setUserId(session.user.id);
   }
 
   return (

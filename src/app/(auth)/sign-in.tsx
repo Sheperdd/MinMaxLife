@@ -2,12 +2,17 @@ import { Link, Stack } from 'expo-router';
 import React from 'react';
 import { View, Text, TextInput, Pressable, Keyboard, Alert } from 'react-native';
 
+import CheckAndInitializeStats from './initializeStats';
+
 import { supabase } from '@/lib/supabase';
 import { useAuthStore } from '@/store/store';
+import { fetchStats } from '~/api/stats';
 import { Button } from '~/components/Button';
+import { useStatsStore } from '~/store/statsStore';
 
 export default function SignIn() {
-  const { email, setEmail, password, setPassword, loading, setLoading, setUserId } = useAuthStore();
+  const { email, setEmail, password, setPassword, loading, setLoading } = useAuthStore();
+  const { setStats } = useStatsStore();
 
   async function signInWithEmail() {
     setLoading(true);
@@ -19,7 +24,15 @@ export default function SignIn() {
     if (error) {
       Alert.alert(error.message);
     } else {
-      setUserId(data.user.id);
+      const userId = data?.user?.id;
+      if (userId) {
+        await CheckAndInitializeStats(userId); // Initialize stats after successful login
+
+        const stats = await fetchStats(userId);
+        if (stats) {
+          setStats(stats);
+        }
+      }
     }
     setLoading(false);
   }

@@ -1,11 +1,9 @@
 import { create } from 'zustand';
 
-import { Stats } from '../types';
-
 interface StatsState {
-  stats: Stats;
-  setStats: (newStats: Stats) => void;
-  updateStat: (stat: keyof Stats, value: number) => void;
+  stats: Record<string, number>;
+  setStats: (newStats: Record<string, number>) => void;
+  updateStat: (stat: string, value: number) => void;
 }
 
 export const useStatsStore = create<StatsState>((set) => ({
